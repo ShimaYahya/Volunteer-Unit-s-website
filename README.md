@@ -161,15 +161,3 @@ npm run build
 ```
 
 Use synthetic records and approved imagery in screenshots. The required desktop and mobile capture list is available in [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md).
-
-## Security
-
-This project is still under review. Read [SECURITY_AUDIT.md](SECURITY_AUDIT.md) before publishing or deploying it. In particular:
-
-* Never commit `.env` files, tokens, real personal records, or production credentials.
-* Use a disposable database for local development because schema synchronization can alter tables.
-* Configure the deployed API with HTTPS and restricted CORS origins.
-* Replace the current development authentication and administrator-bootstrap assumptions before production use.
-* Do not place secrets in `VITE_*` variables; Vite exposes them to the browser.
-
-No project-wide license has been declared. Preserve the notices for Bootstrap, Font Awesome, SB Admin 2, and other bundled libraries, and confirm permission for project branding and imagery before redistribution.
