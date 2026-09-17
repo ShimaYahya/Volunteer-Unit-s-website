@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Volunteer Hub - Add Yemeni Person</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+      type="text/css">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  </head>
+
+  <body id="page-top">
+    <div id="wrapper">
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar">
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="home.html">
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">وحدة التطوع</div>
+        </a>
+        <hr class="sidebar-divider my-0" />
+        <li class="nav-item active">
+          <a class="nav-link" href="home.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+        </li>
+        <hr class="sidebar-divider" />
+        <div class="sidebar-heading">Manage</div>
+        <li class="nav-item">
+          <a class="nav-link" href="projects.html">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Projects</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="news.html">
+            <i class="fas fa-fw fa-newspaper"></i>
+            <span>News</span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="yemenipepole.html">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Prominent Yemeni Figures</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="execution.html">
+            <i class="fas fa-fw fa-cogs"></i>
+            <span>Execution Types</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider d-none d-md-block" />
+
+        <li class="nav-item">
+  <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal" onclick="localStorage.removeItem('token')">
+    <i class="fas fa-fw fa-sign-out-alt"></i>
+    <span>Logout</span>
+  </a>
+</li>
+
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+      </ul>
+
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <button id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </button>
+            <h5 class="text-gray-800 font-weight-bold pl-3 pt-2">Admin
+              Dashboard</h5>
+          </nav>
+
+          <div class="container-fluid">
+            <h1 class="h3 mb-4 text-gray-800">Add Yemeni Person</h1>
+            <div class="card shadow mb-4">
+              <div class="card-body">
+                <form action="#" method="POST" enctype="multipart/form-data"
+                  id="addPersonForm">
+                  <div class="form-group">
+                    <label>Yemeni Name</label>
+                    <input type="text" name="yemeni_name" class="form-control"
+                      placeholder="Enter Yemeni name" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" name="description" rows="4"
+                      placeholder="Enter description" required></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="personImageDisplay">Photo Preview</label>
+                    <img id="personImageDisplay" src alt="Image preview"
+                      style="max-width: 300px; height: auto; border: 1px solid #ddd; margin-top: 10px; display: block;">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Photo</label>
+                    <input type="file" name="photo" class="form-control-file"
+                      accept="image/*">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Add
+                    Person</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright &copy; VolunteerHub 2025</span>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('adminToken');
+      if (!token) {
+        alert('You are not authenticated. Please log in.');
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const personImageDisplay = document.getElementById('personImageDisplay');
+      const personImageInput = document.querySelector('input[name="photo"]');
+      const addPersonForm = document.getElementById('addPersonForm');
+
+      // معاينة الصورة
+      personImageInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => { personImageDisplay.src = e.target.result; };
+          reader.readAsDataURL(file);
+        } else {
+          personImageDisplay.src = '';
+          personImageDisplay.alt = 'Image preview';
+        }
+      });
+
+      // عند الإرسال
+      addPersonForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(addPersonForm);
+
+        console.log("----- FormData before sending (Add Yemeni Person) -----");
+        for (let pair of formData.entries()) console.log(pair[0] + ': ' + pair[1]);
+        console.log("-------------------------------------------------------");
+
+        try {
+          const response = await fetch('http://localhost:3000/yemenipepole', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}` },
+            body: formData
+          });
+
+          if (response.ok) {
+            alert("Yemeni person added successfully!");
+            window.location.href = 'yemenipepole.html';
+          } else {
+            const errorData = await response.json();
+            let errorMessage = "Failed to add person. Server message:";
+            if (errorData.message) {
+              if (Array.isArray(errorData.message)) {
+                errorMessage += "\n- " + errorData.message.join("\n- ");
+              } else {
+                errorMessage += "\n" + errorData.message;
+              }
+            } else {
+              errorMessage += "\n" + JSON.stringify(errorData);
+            }
+            alert(errorMessage);
+            console.error("Server error response (POST):", errorData);
+          }
+        } catch (error) {
+          console.error('Failed to send request:', error);
+          alert("Failed to add person: " + error.message + "\nPlease check your connection or server.");
+        }
+      });
+    });
+  </script>
+  </body>
+</html>

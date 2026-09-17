@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Volunteer Hub - Edit Yemeni Person</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+  </head>
+  <body id="page-top">
+    <div id="wrapper">
+
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar">
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="home.html">
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">وحدة التطوع</div>
+        </a>
+        <hr class="sidebar-divider my-0" />
+        <li class="nav-item active">
+          <a class="nav-link" href="home.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+        </li>
+        <hr class="sidebar-divider" />
+        <div class="sidebar-heading">Manage</div>
+        <li class="nav-item">
+          <a class="nav-link" href="projects.html">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Projects</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="news.html">
+            <i class="fas fa-fw fa-newspaper"></i>
+            <span>News</span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="yemenipepole.html">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Prominent Yemeni Figures</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="execution.html">
+            <i class="fas fa-fw fa-cogs"></i>
+            <span>Execution Types</span>
+          </a>
+        </li>
+
+        <hr class="sidebar-divider d-none d-md-block" />
+
+        <li class="nav-item">
+  <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal" onclick="localStorage.removeItem('token')">
+    <i class="fas fa-fw fa-sign-out-alt"></i>
+    <span>Logout</span>
+  </a>
+</li>
+
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+      </ul>
+
+      <!-- Content -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <button id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3"><i
+                class="fa fa-bars"></i></button>
+            <h5 class="text-gray-800 font-weight-bold pl-3 pt-2">Admin
+              Dashboard</h5>
+          </nav>
+
+          <div class="container-fluid">
+            <h1 class="h3 mb-4 text-gray-800">Edit</h1>
+
+            <div class="card shadow mb-4">
+              <div class="card-body">
+                <form id="editPersonForm" enctype="multipart/form-data">
+                  <input type="hidden" name="person_id" value>
+
+                  <div class="form-group">
+                    <label>Name</label>
+                    <!-- سنحوّلها إلى yemeni_name عند الإرسال -->
+                    <input type="text" name="name" class="form-control"
+                      placeholder="Full name" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="5" class="form-control"
+                      placeholder="Biography / achievements"
+                      required></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="personImageDisplay">Photo</label>
+                    <img id="personImageDisplay" src alt="Person photo"
+                      style="max-width:300px;height:auto;border:1px solid #ddd;margin-top:10px;display:block;">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Upload New Photo</label>
+                    <!-- يجب أن يكون الاسم photo ليتوافق مع الباك -->
+                    <input type="file" name="photo" class="form-control-file"
+                      accept="image/*">
+                  </div>
+
+                  <button type="button" class="btn btn-primary"
+                    onclick="handlePersonUpdate()">Update</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <footer class="sticky-footer bg-white">
+            <div class="container my-auto"><div
+                class="copyright text-center my-auto">
+                <span>Copyright &copy; VolunteerHub 2025</span></div></div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('adminToken');
+    if (!token) { alert('You are not authenticated. Please log in.'); location.href = 'index.html'; return; }
+
+    // ⚠️ عدّل BASE إلى المسار الصحيح إذا كان مختلف (المثال السابق عندك كان yemenipepole)
+    const BASE = 'http://localhost:3000/yemenipepole';
+
+    const params = new URLSearchParams(location.search);
+    const personId = params.get('id');
+    if (!personId) { alert('Missing person id in URL.'); return; }
+
+    const form    = document.getElementById('editPersonForm');
+    const imgInput= form.querySelector('input[name="photo"]');
+    const imgPrev = document.getElementById('personImageDisplay');
+
+    let originalPhotoUrl = '';
+
+    // معاينة صورة جديدة
+    imgInput.addEventListener('change', e => {
+      const f = e.target.files[0];
+      imgPrev.src = f ? URL.createObjectURL(f) : (originalPhotoUrl || '');
+    });
+
+    // جلب البيانات
+    try {
+      const res = await fetch(`${BASE}/${personId}`, { headers: { 'Authorization': `Bearer ${token}` }});
+      if (!res.ok) throw new Error(`Failed to fetch person (HTTP ${res.status})`);
+      const payload = await res.json();
+      const p = payload.data || payload;
+
+      form.elements['person_id'].value = p.id || personId;
+      form.elements['name'].value = p.yemeni_name || '';
+      form.elements['description'].value = p.description || '';
+      originalPhotoUrl = p.photo || '';
+      imgPrev.src = originalPhotoUrl || '';
+      imgPrev.alt = p.yemeni_name || 'Photo';
+    } catch (err) {
+      console.error(err);
+      alert('Error loading person: ' + err.message);
+    }
+
+    // زر الحفظ
+    window.handlePersonUpdate = async function () {
+      const fd = new FormData(form);
+
+      // تحويل name -> yemeni_name
+      if (fd.has('name')) {
+        fd.set('yemeni_name', fd.get('name'));
+        fd.delete('name');
+      }
+      // لا نرسل person_id في الجسم
+      fd.delete('person_id');
+
+      // لو ما اخترنا صورة جديدة، لا ترسل photo
+      if (!imgInput.files.length) fd.delete('photo');
+
+      console.log('--- FormData (PUT /yemenipepole/:id) ---');
+      for (const [k,v] of fd.entries()) console.log(k, v);
+      console.log('---------------------------------------');
+
+      try {
+        const res = await fetch(`${BASE}/${personId}`, {
+          method: 'PUT',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: fd
+        });
+
+        if (res.ok) {
+          alert('Person updated successfully!');
+          location.href = 'yemenipepole.html'; // صفحة القائمة
+          return;
+        }
+
+        const ct = res.headers.get('content-type') || '';
+        const errBody = ct.includes('application/json') ? await res.json() : await res.text();
+        let msg = `Failed to update person (HTTP ${res.status}).`;
+        if (typeof errBody === 'string') msg += `\n\n${errBody.slice(0,500)}…`;
+        else if (errBody?.message) msg += `\n${Array.isArray(errBody.message) ? errBody.message.join('\n- ') : errBody.message}`;
+        else msg += `\n${JSON.stringify(errBody)}`;
+        alert(msg);
+        console.error('Server error response:', errBody);
+      } catch (e) {
+        console.error('Update failed:', e);
+        alert('Update failed: ' + e.message);
+      }
+    }
+  });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+@import url('/styles/legacy.css');
+@import url('/styles/home.css');
+@import url('/styles/news.css');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css');
+
+:root { font-family: "Tajawal", "Noto Sans Arabic", system-ui, sans-serif; color: #444; background: #fff; }
+* { box-sizing: border-box; }
+html { direction: rtl; scroll-behavior: smooth; }
+body { margin: 0; direction: rtl; text-align: right; font-family: inherit; line-height: 1.75; }
+button, input, select, textarea { font: inherit; }
+#root { min-height: 100vh; }

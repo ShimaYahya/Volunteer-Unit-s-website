@@ -1,0 +1,249 @@
+/* ====== News Section Styles ====== */
+:root{
+  --accent: #B11922;        /* الأحمر من الهوية */
+  --accent-600:#9B0F17;
+  --ink: #0B0D2A;           /* كحلي داكن للنص */
+  --muted: #6B7280;         /* رمادي للنصوص الثانوية */
+  --card: #ffffff;
+  --card-border:#E5E7EB;
+  --bg:#F7F7F9;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(11,13,42,.06);
+}
+
+/* اجعل الخلفية مثل الصفحة (شفافة) */
+.news-section {
+    background: transparent !important;   /* أو background: inherit;  لو حاب يأخذ اللون من العنصر الأب */
+}
+
+
+.news-section{
+  background: var(--bg);
+  padding: clamp(48px, 6vw, 96px) 0;
+  font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--ink);
+}
+.news-section .container{
+  width:min(1150px, 92%);
+  margin-inline:auto;
+}
+
+.news-head{
+  text-align:right;
+  margin-bottom: 28px;
+}
+.news-head h2{
+  font-size: clamp(26px, 3.2vw, 40px);
+  margin:0 0 8px;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+.news-head h2 span{
+  color: var(--accent);
+  border-bottom: 4px solid var(--accent);
+  padding-bottom: 6px;
+}
+.news-head p{
+  margin:0;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+
+/* شبكة البطاقات */
+.news-grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 22px;
+  margin-top: 22px;
+}
+.news-card{
+  grid-column: span 12;
+  background: var(--card);
+  border:1px solid var(--card-border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+  display:flex;
+  flex-direction:column;
+}
+.news-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(11,13,42,.10);
+}
+.thumb{
+  position:relative;
+  aspect-ratio: 16/9;
+  overflow:hidden;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition: transform .5s ease;
+}
+.news-card:hover .thumb img{ transform: scale(1.04); }
+
+.badge{
+  position:absolute;
+  top:14px; left:14px;   /* RTL يضعها يمين/يسار حسب الحاجة */
+  background: var(--accent);
+  color:#fff;
+  padding:6px 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight:700;
+  box-shadow: 0 6px 14px rgba(177,25,34,.25);
+}
+.badge-gray{ background:#374151; box-shadow: 0 6px 14px rgba(55,65,81,.25); }
+
+.content{
+  padding:18px 18px 16px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.title{
+  color: var(--ink);
+  font-weight:800;
+  text-decoration:none;
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height:1.45;
+}
+.title:hover{ color: var(--accent); }
+.excerpt{
+  color: var(--muted);
+  margin:0;
+  font-size: 15px;
+}
+.meta{
+  display:flex; align-items:center; gap:8px;
+  color:#4B5563;
+  font-size: 13.5px;
+}
+.meta .dot{ opacity:.6; }
+
+.more{
+  margin-top:6px;
+  align-self:flex-start;
+  background: var(--accent);
+  color:#fff;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius: 12px;
+  font-weight:700;
+  font-size:14px;
+  border:1px solid var(--accent-600);
+  transition: filter .2s ease, transform .15s ease;
+}
+.more:hover{ filter:brightness(1.05); transform: translateY(-1px); }
+
+/* إستجابة */
+@media (min-width: 640px){
+  .news-card{ grid-column: span 6; }
+}
+@media (min-width: 980px){
+  .news-card{ grid-column: span 4; }
+}
+
+/* مُنقِّل الصفحات (اختياري) */
+.pager{
+  margin-top:26px;
+  display:flex; gap:8px; justify-content:center; align-items:center;
+}
+.page{
+  display:inline-flex; justify-content:center; align-items:center;
+  width:40px; height:40px;
+  background:#fff; border:1px solid var(--card-border);
+  border-radius:12px; text-decoration:none; color:var(--ink);
+  font-weight:700; box-shadow: var(--shadow);
+}
+.page:hover{ color:var(--accent); }
+.page.is-active{ background: var(--accent); color:#fff; border-color: var(--accent-600); }
+
+
+
+
+.news-section{--accent:#B11922;--accent-600:#9B0F17;--ink:#0B0D2A;--muted:#6B7280;
+  --card:#fff;--card-border:#E5E7EB;--bg:#F7F7F9;--radius:16px;--shadow:0 10px 30px rgba(11,13,42,.06);
+  background:var(--bg); padding:48px 0 16px; color:var(--ink); font-family:system-ui,"Segoe UI",Roboto,Arial,sans-serif}
+.news-section .container{width:min(1150px,92%);margin-inline:auto}
+.news-section .news-head{text-align:left;margin-bottom:8px}
+.news-section .news-head h2{margin:0 0 8px;font-weight:800;line-height:1.2;font-size:clamp(26px,3.2vw,40px)}
+.news-section .news-head h2 span{color:var(--accent);border-bottom:4px solid var(--accent);padding-bottom:6px}
+.news-section .news-head p{margin:0;color:var(--muted);font-size:15.5px}
+
+.news-section .news-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;margin:22px 0}
+.news-section .news-card{grid-column:span 12;background:var(--card);border:1px solid var(--card-border);
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.news-section .news-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(11,13,42,.10)}
+.news-section .thumb{position:relative;aspect-ratio:16/9;overflow:hidden}
+.news-section .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.news-section .news-card:hover .thumb img{transform:scale(1.04)}
+.news-section .badge{position:absolute;top:14px;right:14px;background:var(--accent);color:#fff;padding:6px 10px;border-radius:999px;font-size:12.5px;font-weight:700;box-shadow:0 6px 14px rgba(177,25,34,.25)}
+.news-section .badge-gray{background:#374151;box-shadow:0 6px 14px rgba(55,65,81,.25)}
+.news-section .content{padding:18px;display:flex;flex-direction:column;gap:10px}
+.news-section .title{color:var(--ink);font-weight:800;text-decoration:none;font-size:clamp(18px,2.2vw,22px);line-height:1.45}
+.news-section .title:hover{color:var(--accent)}
+.news-section .excerpt{color:var(--muted);margin:0;font-size:15px}
+.news-section .meta{display:flex;align-items:center;gap:8px;color:#4B5563;font-size:13.5px}
+.news-section .meta .dot{opacity:.6}
+.news-section a.more{margin-top:6px;align-self:flex-start;background:var(--accent);color:#fff;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700;font-size:14px;border:1px solid var(--accent-600);transition:filter .2s, transform .15s}
+.news-section a.more:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.news-section .is-hidden{display:none}
+
+@media (min-width:640px){ .news-section .news-card{grid-column:span 6} }
+@media (min-width:980px){ .news-section .news-card{grid-column:span 4} }
+
+.news-section .show-more-wrap{display:flex;justify-content:center;padding:8px 0 48px}
+.news-section .show-more{background:#fff;border:1px solid var(--card-border);box-shadow:var(--shadow);
+  color:var(--ink);font-weight:800;border-radius:12px;padding:12px 18px;cursor:pointer}
+.news-section .show-more:hover{color:var(--accent)}
+
+
+
+
+/* 1) إصلاح شارة التصنيف أعلى الصورة (تكون شارة قصيرة لا تمتد بعرض الكرت) */
+.news-section .badge{
+  position: absolute;
+  top: 14px;
+  right: 14px;          /* ثبّتها يمين في LTR */
+  left: auto !important;/* لو كان عندك left قديم من نسخة RTL */
+  display: inline-flex; /* حجمها على قد المحتوى */
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  width: auto !important;     /* منع أي عرض ممتد */
+  max-width: 80%;             /* احتياط لو العنوان طويل */
+  white-space: nowrap;        /* تمنع لف السطر */
+  box-sizing: border-box;
+}
+
+/* نفس الشيء لبادج الداكنة */
+.news-section .badge-gray{
+  display: inline-flex;
+  width: auto !important;
+  max-width: 80%;
+  white-space: nowrap;
+}
+
+/* 2) منع تداخل تنسيق الخط الأحمر مع أي span داخل الفقرة */
+.news-section .news-head h2 > span{
+  color: var(--accent);
+  border-bottom: 4px solid var(--accent);
+  padding-bottom: 6px;
+}
+
+/* لو كان في أي span داخل الوصف أو عناصر أخرى—ألغِ أي حد سفلي */
+.news-section .news-head p span{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 3) تأكيد انحناء الصورة مطابق للكرت (اختياري لتحسين الحواف) */
+.news-section .thumb{
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  overflow: hidden; /* يضمن قصّ الصورة داخل الانحناء */
+}

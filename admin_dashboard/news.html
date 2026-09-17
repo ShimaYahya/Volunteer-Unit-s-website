@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content>
+        <meta name="author" content>
+
+        <title>Volunteer Hub - Admin Dashboard</title>
+
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+            type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    </head>
+
+    <body id="page-top">
+
+        <div id="wrapper">
+
+            <ul
+                class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+                id="accordionSidebar">
+                <a
+                    class="sidebar-brand d-flex align-items-center justify-content-center"
+                    href="home.html">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">وحدة التطوع</div>
+                </a>
+                <hr class="sidebar-divider my-0" />
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+                <hr class="sidebar-divider" />
+                <div class="sidebar-heading">Manage</div>
+                <li class="nav-item">
+                    <a class="nav-link" href="projects.html">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="news.html">
+                        <i class="fas fa-fw fa-newspaper"></i>
+                        <span>News</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="yemenipepole.html">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Prominent Yemeni Figures</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="execution.html">
+                        <i class="fas fa-fw fa-cogs"></i>
+                        <span>Execution Types</span>
+                    </a>
+                </li>
+
+                <hr class="sidebar-divider d-none d-md-block" />
+
+                <li class="nav-item">
+                    <a class="nav-link " href="#" data-toggle="modal"
+                        data-target="#logoutModal">
+                        <i class="fas fa-fw fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0"
+                        id="sidebarToggle"></button>
+                </div>
+            </ul>
+
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+                    <nav
+                        class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <button id="sidebarToggleTop"
+                            class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <h5
+                            class="text-gray-800 font-weight-bold pl-3 pt-2">Admin
+                            Dashboard</h5>
+
+                    </nav>
+                    <div class="container-fluid">
+                        <div
+                            class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">News</h1>
+                            <a href="add-new.html"
+                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                <i class="fas fa-plus fa-sm text-white-50"></i>
+                                Add a new
+                            </a>
+                        </div>
+                        <div id="update-success-msg"
+                            class="alert alert-success d-none" role="alert">
+                            ✅ new updated successfully!
+                        </div>
+                        <div id="save-success-msg"
+                            class="alert alert-success d-none" role="alert">
+                            ✅ new saved successfully!
+                        </div>
+                        <div id="delete-success-msg"
+                            class="alert alert-warning d-none" role="alert">
+                            🗑️ new moved to trash!
+                        </div>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6
+                                    class="m-0 font-weight-bold text-primary">Manage
+                                    all News</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered"
+                                        id="dataTable" width="100%"
+                                        cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>title</th>
+                                                <th>Description</th>
+                                                <th>Photo</th>
+                                                <th>Created At</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="projects-table-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; VolunteerHub 2025</span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready
+                                to
+                                Leave?</h5>
+                            <button class="close" type="button"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are
+                            ready to
+                            end your current session.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button"
+                                data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary"
+                                href="index.html">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <script src="js/sb-admin-2.min.js"></script>
+            <script src="js/projects.js"></script>
+
+            <style>
+            td,
+            th {
+                text-align: center;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+        </style>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const tableBody = document.getElementById('projects-table-body');
+                const deleteSuccessMsg = document.getElementById('delete-success-msg');
+
+                function fetchAndDisplayProjects() {
+                    fetch('http://localhost:3000/news')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(projects => {
+                            console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',projects);
+                            tableBody.innerHTML = ''; 
+                            if (projects.data && projects.data.length > 0) {
+                                const rows = projects.data.slice().reverse().map(project => `
+                                <tr>
+                                    <td>${project.news_title}</td>
+                                    <td>
+                                        <div class="description-container">
+                                            <span class="truncated-description">${project.description.substring(0, 50)}</span>
+                                            <br> 
+                                            <span class="truncated-description">${project.description.substring(50, 100)} </span>
+                                            ${project.description.length > 100 ? "..." : " "}
+                                        </div>
+                                    </td>
+                                    <td><img src="${project.photo}" width="60" alt="${project.name}"></td>
+                                    <td>${project.createdAt}</td>
+                                    <td>
+                                        <a href="edit-new.html?id=${project.id}" class="text-primary mr-2">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button 
+                                            type="button"
+                                            class="btn btn-sm text-danger soft-delete-btn" 
+                                            data-id="${project.id}" 
+                                            title="Move to trash"
+                                            aria-label="Delete project"
+                                        >
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                `).join('');
+                                tableBody.innerHTML = rows;
+                            } else {
+                                tableBody.innerHTML = `<tr><td colspan="17">No projects found.</td></tr>`;
+                            }
+                            
+                            document.querySelectorAll('.soft-delete-btn').forEach(button => {
+                                button.addEventListener('click', function() {
+                                    const projectId = this.dataset.id;
+                                    deleteProject(projectId, this.closest('tr'));
+                                });
+                            });
+
+                        })
+                        .catch(error => {
+                            console.error('Error fetching projects:', error);
+                            tableBody.innerHTML = `<tr><td colspan="17">Error loading projects. Please try again later.</td></tr>`;
+                        });
+                }
+
+                fetchAndDisplayProjects();
+
+
+                function deleteProject(projectId, rowElement) {
+                    const token = localStorage.getItem('adminToken');
+                    if (!token) {
+                        alert('You are not authenticated. Please log in.');
+                        window.location.href = 'index.html';
+                        return;
+                    }
+                    if (confirm('Are you sure you want to move this project to trash?')) {
+                        fetch(`http://localhost:3000/news/${projectId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Project soft-deleted successfully:', data);
+                            deleteSuccessMsg.classList.remove('d-none');
+                            setTimeout(() => {
+                                deleteSuccessMsg.classList.add('d-none');
+                            }, 3000);
+
+                            if (rowElement) {
+                                rowElement.remove();
+                            } else {
+                                document.querySelector(`button[data-id="${projectId}"]`).closest('tr').remove();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error deleting project:', error);
+                            alert('Failed to move the project to trash. Please try again.');
+                        });
+                    } else {
+                        console.log('Deletion cancelled.');
+                    }
+                }
+            });
+        </script>
+
+        </body>
+
+    </html>

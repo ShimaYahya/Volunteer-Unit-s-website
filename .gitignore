@@ -1,0 +1,36 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+
+# Dependencies, logs and local tooling
+node_modules/
+dist/
+*.tsbuildinfo
+*.log
+npm-debug.log*
+coverage/
+.nyc_output/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime uploads and private database exports
+/backend/uploads/*
+!/backend/uploads/.gitkeep
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+/backups/
+
+# Keep package-lock.json, bundled vendor assets, CSS and public images:
+# the static interfaces use them directly.
+

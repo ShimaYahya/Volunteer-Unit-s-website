@@ -1,0 +1,46 @@
+.site-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.site-main { flex: 1; }
+.site-navbar { position: relative; z-index: 5000; transition: box-shadow .3s ease; }
+.site-navbar.scrolled { box-shadow: 0 8px 28px rgba(209, 33, 43, .28); }
+.mobile-nav { display: flex; }
+.navbar-toggler { cursor: pointer; }
+.back-to-top { position: fixed; display: inline-flex; right: 30px; bottom: 30px; z-index: 99; align-items: center; justify-content: center; }
+.page-hero { margin-bottom: 10px; background: linear-gradient(rgba(169,47,50,.5), rgba(209,33,43,.5)), url('/img_v/صورة الفريق.jpg') no-repeat center center; background-size: cover; }
+.loading-state, .error-state, .empty-state { width: 100%; padding: 50px 20px; text-align: center; }
+.loading-state { display: flex; flex-direction: column; align-items: center; }
+.error-state { color: #b11922; }
+.spinner-border { width: 3rem; height: 3rem; color: #d1212b; }
+.project-card-link { transition: all .3s ease; }
+.project-card-link:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+.category-badge { position: absolute; top: 15px; right: 15px; z-index: 10; padding: 5px 10px; border-radius: 20px; color: #fff; background: rgba(231,76,60,.85); font-size: .8rem; font-weight: 600; }
+.project-details { display: flex; justify-content: space-between; width: 100%; padding: 0 1rem .5rem; gap: .5rem; }
+.project-meta { padding: 3px 8px; border-radius: 10px; background: rgba(0,0,0,.2); font-size: .85rem; }
+.project-header { position: relative; margin-bottom: 2rem; }
+.project-badge { position: absolute; top: 20px; right: 20px; z-index: 10; padding: 8px 15px; border-radius: 20px; color: #fff; background: #d1212b; font-weight: 600; }
+.project-image { height: 450px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.1); }
+.info-card { overflow: hidden; border-radius: 10px; background: rgba(209,33,43,.9); box-shadow: 0 5px 15px rgba(0,0,0,.1); }
+.info-card h3 { margin: 0; padding: 15px 20px; color: #fff; background: rgba(0,0,0,.1); }
+.info-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,.1); gap: 15px; }
+.info-item:last-child { border-bottom: 0; }
+.info-label { color: #fff; font-weight: 600; }
+.info-value { color: #fff; text-align: left; }
+.conditions-box { margin: 20px 0; padding: 15px; border-right: 4px solid #d1212b; border-radius: 5px 0 0 5px; background: rgba(209,33,43,.1); }
+.contact-info { margin-top: 20px; padding: 20px; border-radius: 10px; background: rgba(209,33,43,.1); }
+.volunteer-btn { display: inline-block; width: 100%; margin-top: 20px; padding: 12px 25px; border: 0; border-radius: 50px; color: #fff; background: #d1212b; text-align: center; font-weight: 600; cursor: pointer; transition: all .3s; }
+.volunteer-btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,.1); }
+.volunteer-btn:disabled { opacity: .6; cursor: not-allowed; }
+.back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; border-radius: 5px; color: #fff; background: #6c757d; transition: all .3s; }
+.project-description { font-size: 1.05rem; line-height: 1.9; white-space: pre-wrap; }
+.news-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(15,23,42,.55); backdrop-filter: blur(2px); }
+.news-dialog { display: flex; flex-direction: column; overflow: hidden; width: 700px; max-width: 96vw; height: 500px; max-height: 86vh; border-radius: 18px; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+.dialog-header { display: flex; justify-content: flex-start; padding: 8px 12px; }
+.dialog-close { display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 50%; cursor: pointer; color: #475569; background: #f1f5f9; font-size: 18px; }
+.dialog-media { padding: 0 20px 6px; }
+.dialog-media img { display: block; width: 100%; height: 300px; object-fit: cover; border-radius: 14px; }
+.dialog-body { flex: 1; overflow-y: auto; padding: 6px 22px 22px; }
+.dialog-body h2 { margin: .6rem 0 .4rem; color: #0f172a; font-size: clamp(20px,2.4vw,28px); }
+.dialog-body p { margin: .3rem 0; color: #334155; line-height: 1.9; white-space: pre-wrap; }
+.contact-card { height: 450px; }
+.btn-icon { display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; flex: 0 0 60px; border-radius: 50%; }
+@media (max-width: 991.98px) { .mobile-nav { display: none; width: 100%; } .mobile-nav.open { display: block; } .site-navbar .navbar { flex-wrap: wrap; } .project-image { height: 320px; } }
+@media (max-width: 600px) { .top-contact { font-size: .72rem; } .project-details { flex-direction: column; } .dialog-media img { height: 220px; } .contact-card { height: auto; min-height: 450px; padding-block: 2rem; } }

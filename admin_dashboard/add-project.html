@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content>
+        <meta name="author" content>
+
+        <title>Volunteer Hub - Add New Project</title>
+
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+            type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    </head>
+
+    <body id="page-top">
+
+        <div id="wrapper">
+
+            <ul
+                class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+                id="accordionSidebar">
+                <a
+                    class="sidebar-brand d-flex align-items-center justify-content-center"
+                    href="home.html">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">وحدة التطوع</div>
+                </a>
+                <hr class="sidebar-divider my-0" />
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+                <hr class="sidebar-divider" />
+                <div class="sidebar-heading">Manage</div>
+                <li class="nav-item">
+                    <a class="nav-link" href="projects.html">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="news.html">
+                        <i class="fas fa-fw fa-newspaper"></i>
+                        <span>News</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="yemenipepole.html">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Prominent Yemeni Figures</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="execution.html">
+                        <i class="fas fa-fw fa-cogs"></i>
+                        <span>Execution Types</span>
+                    </a>
+                </li>
+
+                <hr class="sidebar-divider d-none d-md-block" />
+
+                <li class="nav-item">
+                    <a class="nav-link " href="#" data-toggle="modal"
+                        data-target="#logoutModal">
+                        <i class="fas fa-fw fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0"
+                        id="sidebarToggle"></button>
+                </div>
+            </ul>
+
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+                    <nav
+                        class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <button id="sidebarToggleTop"
+                            class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <h5
+                            class="text-gray-800 font-weight-bold pl-3 pt-2">Admin
+                            Dashboard</h5>
+                    </nav>
+                    <div class="container-fluid">
+                        <h1 class="h3 mb-4 text-gray-800">Add New Project</h1>
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <form action="#" method="POST"
+                                    enctype="multipart/form-data"
+                                    id="addProjectForm">
+                                    <div class="form-group">
+                                        <label>Project Title</label>
+                                        <input type="text" name="title"
+                                            class="form-control"
+                                            placeholder="Enter project title"
+                                            required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Project Manager</label>
+                                        <input type="text" name="manager"
+                                            class="form-control"
+                                            placeholder="Enter project manager name"
+                                            required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Start Date</label>
+                                        <input type="date" name="start_date"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>End Date</label>
+                                        <input type="date" name="end_date"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Deadline</label>
+                                        <input type="date" name="time"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <select name="country_id"
+                                            class="form-control"
+                                            id="countrySelect" required>
+                                            <option value>Loading
+                                                countries...</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select name="city_id"
+                                            class="form-control" id="citySelect"
+                                            required>
+                                            <option value>Select country
+                                                first</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Execution Type</label>
+                                        <select name="execution_type"
+                                            class="form-control"
+                                            id="executionSelect" required>
+                                            <option value>Loading
+                                                Execution...</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Volunteers Needed</label>
+                                        <input type="number"
+                                            name="volunteers_needed"
+                                            class="form-control" value="0"
+                                            min="0">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Available</label>
+                                        <select name="available"
+                                            class="form-control">
+                                            <option value="Yes"
+                                                selected>Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Conditions</label>
+                                        <textarea name="conditions"
+                                            class="form-control"
+                                            placeholder="Enter conditions for volunteers"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control"
+                                            name="description" rows="4"
+                                            placeholder="Enter project description"
+                                            required></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Created At</label>
+                                        <input type="date" class="form-control"
+                                            name="created_at" readonly>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Contact Name</label>
+                                        <input type="text" name="contact_name"
+                                            class="form-control"
+                                            placeholder="Enter contact person's name">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Contact Email</label>
+                                        <input type="email" name="contact_email"
+                                            class="form-control"
+                                            placeholder="Enter contact person's email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Contact Phone</label>
+                                        <input type="text" name="contact_phone"
+                                            class="form-control"
+                                            placeholder="Enter contact person's phone number">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Project Link</label>
+                                        <input type="text" name="project_link"
+                                            class="form-control"
+                                            placeholder="Enter project link">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="projectImageDisplay">Project
+                                            Image Preview</label>
+                                        <img id="projectImageDisplay" src
+                                            alt="Project image preview"
+                                            style="max-width: 300px; height: auto; border: 1px solid #ddd; margin-top: 10px; display: block;">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Project Image</label>
+                                        <input type="file" name="photo"
+                                            class="form-control-file"
+                                            accept="image/*">
+                                    </div>
+
+                                    <button type="submit"
+                                        class="btn btn-primary">Add
+                                        Project</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; VolunteerHub 2025</span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready
+                                to Leave?</h5>
+                            <button class="close" type="button"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are
+                            ready to end your current session.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button"
+                                data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary"
+                                href="index.html">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+            <script src="js/sb-admin-2.min.js"></script>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const token = localStorage.getItem('adminToken');
+                if (!token) {
+                    alert('You are not authenticated. Please log in.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+
+                const countrySelect = document.getElementById('countrySelect');
+                const executionSelect = document.getElementById('executionSelect');
+                const citySelect = document.getElementById('citySelect');
+                const projectImageDisplay = document.getElementById('projectImageDisplay');
+                const projectImageInput = document.querySelector('input[name="photo"]');
+                const createdAtInput = document.querySelector('input[name="created_at"]');
+                const addProjectForm = document.getElementById('addProjectForm');
+
+                const today = new Date().toISOString().split('T')[0];
+                createdAtInput.value = today;
+
+                const fetchExecutionType = async () => {
+                    try {
+                        const response = await fetch('http://localhost:3000/execution_type');
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        const execution = await response.json();
+                        populateDropdown(executionSelect, execution.data, 'id', 'execution_type', 'Select execution type');
+                    } catch (error) {
+                        console.error('Error fetching execution types:', error);
+                        executionSelect.innerHTML = '<option value="">Failed to load execution types</option>';
+                    }
+                };
+
+                const fetchCountries = async () => {
+                    try {
+                        const response = await fetch('http://localhost:3000/countries');
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        const countries = await response.json();
+                        populateDropdown(countrySelect, countries.data, 'id', 'name', 'Select a country');
+                    } catch (error) {
+                        console.error('Error fetching countries:', error);
+                        countrySelect.innerHTML = '<option value="">Failed to load countries</option>';
+                    }
+                };
+
+                const fetchCities = async (countryId) => {
+                    citySelect.innerHTML = '<option value="">Loading cities...</option>';
+                    citySelect.disabled = true;
+
+                    if (!countryId) {
+                        citySelect.innerHTML = '<option value="">Select country first</option>';
+                        citySelect.disabled = true;
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(`http://localhost:3000/cities${countryId ? `?CountryId=${countryId}` : ''}`);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        const cities = await response.json();
+
+                        let citiesToPopulate = cities.data;
+                        if (!countryId || citiesToPopulate.some(city => city.CountryId != countryId)) {
+                            citiesToPopulate = cities.data.filter(city => city.CountryId == countryId);
+                        }
+
+                        populateDropdown(citySelect, citiesToPopulate, 'id', 'name', 'Select a city');
+                        citySelect.disabled = false;
+                    } catch (error) {
+                        console.error('Error fetching cities:', error);
+                        citySelect.innerHTML = '<option value="">Failed to load cities</option>';
+                        citySelect.disabled = false;
+                    }
+                };
+
+                const populateDropdown = (selectElement, items, valueKey, textKey, defaultOptionText) => {
+                    selectElement.innerHTML = '';
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.textContent = defaultOptionText;
+                    selectElement.appendChild(defaultOption);
+
+                    if (!Array.isArray(items)) {
+                        console.error('populateDropdown: Received items is not an array:', items);
+                        return;
+                    }
+
+                    items.forEach(item => {
+                        const option = document.createElement('option');
+                        option.value = item[valueKey];
+                        option.textContent = item[textKey];
+                        selectElement.appendChild(option);
+                    });
+                };
+
+                countrySelect.addEventListener('change', (event) => {
+                    const selectedCountryId = event.target.value;
+                    fetchCities(selectedCountryId);
+                });
+
+                fetchCountries();
+                fetchExecutionType();
+                fetchCities('');
+
+                projectImageInput.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            projectImageDisplay.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        projectImageDisplay.src = '';
+                        projectImageDisplay.alt = 'Project image preview';
+                    }
+                });
+
+                addProjectForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+
+                    const formData = new FormData(addProjectForm);
+
+                    if (formData.has('title')) {
+                        formData.set('project_name', formData.get('title'));
+                        formData.delete('title');
+                    }
+                    if (formData.has('manager')) {
+                        formData.set('project_manager', formData.get('manager'));
+                        formData.delete('manager');
+                    }
+                    if (formData.has('volunteers_needed')) {
+                        formData.set('num_voliunteers', parseInt(formData.get('volunteers_needed'), 10));
+                        formData.delete('volunteers_needed');
+                    }
+                    if (formData.has('time')) {
+                        formData.set('deadline', formData.get('time'));
+                        formData.delete('time');
+                    }
+                    if (formData.has('available')) {
+                        formData.set('available', formData.get('available') === 'Yes');
+                    }
+                    if (formData.has('contact_name')) {
+                        formData.set('contact_person', formData.get('contact_name'));
+                        formData.delete('contact_name');
+                    }
+                    if (formData.has('project_link')) {
+                        formData.set('project_link', formData.get('project_link'));
+                        // formData.delete('project_link');
+                    }
+                    if (formData.has('country_id')) {
+                        formData.set('country_id', parseInt(formData.get('country_id'), 10));
+                    }
+                    if (formData.has('city_id')) {
+                        formData.set('city_id', parseInt(formData.get('city_id'), 10));
+                    }
+                    if (formData.has('execution_type')) {
+                        formData.set('execution_type_id', parseInt(formData.get('execution_type'), 10));
+                        formData.delete('execution_type');
+                    }
+
+                    formData.delete('created_at');
+
+                    console.log("----- FormData contents before sending (Add Project) -----");
+                    for (let pair of formData.entries()) {
+                        console.log(pair[0] + ': ' + pair[1]);
+                    }
+                    console.log("-------------------------------------------------");
+
+                    try {
+                        const response = await fetch('http://localhost:3000/projects', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: formData
+                        });
+
+                        if (response.ok) {
+                            alert("Project added successfully!");
+                            window.location.href = 'projects.html';
+                        } else {
+                            const errorData = await response.json();
+                            let errorMessage = "Failed to add project. Server message:";
+                            if (errorData.message) {
+                                if (Array.isArray(errorData.message)) {
+                                    errorMessage += "\n- " + errorData.message.join("\n- ");
+                                } else {
+                                    errorMessage += "\n" + errorData.message;
+                                }
+                            } else {
+                                errorMessage += "\n" + JSON.stringify(errorData);
+                            }
+                            alert(errorMessage);
+                            console.error("Server error response (POST):", errorData);
+                        }
+                    } catch (error) {
+                        console.error('Failed to send request:', error);
+                        alert("Failed to add project: " + error.message + "\nPlease check network connection and server.");
+                    }
+                });
+            });
+
+            
+        </script>
+
+        </body>
+
+    </html>
