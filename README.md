@@ -161,3 +161,4 @@ npm run build
 ```
 
 Use synthetic records and approved imagery in screenshots. The required desktop and mobile capture list is available in [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md).
+
