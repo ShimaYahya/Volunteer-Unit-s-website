@@ -60,7 +60,6 @@ The **Volunteer Unit Web Platform** is a bilingual-ready Arabic web experience f
 ├── user_interface_react_app/ # React and TypeScript public website
 ├── admin_dashboard/           # Static administration dashboard
 ├── docs/                      # Product screenshots and capture guidance
-├── SECURITY_AUDIT.md          # Security findings and release requirements
 └── README.md
 ```
 
@@ -87,6 +86,8 @@ NODE_ENV=development
 PORT=3000
 URL=http://localhost:3000
 UPLOADS=/uploads/
+JWT_EXPIRES_IN ='3h'
+JWT_SECRET='secret_key'
 ```
 
 Start the API:
@@ -159,6 +160,3 @@ cd user_interface_react_app
 npm run lint
 npm run build
 ```
-
-Use synthetic records and approved imagery in screenshots. The required desktop and mobile capture list is available in [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md).
-
